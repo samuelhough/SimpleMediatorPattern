@@ -32,25 +32,3 @@ var Mediator = (function(PubSub){
 	
 	return Mediator;
 }(PubSub));
-
-
-
-
-var app = new Mediator();
-
-
-function Particle(){
-	this.on('change:sam', function(){ console.log(arguments); });
-}
-app.register(Particle);
-
-function Sam(){
-	this.set('sam',1);
-}
-app.register(Sam);
-
-var a = new Particle();
-var b = new Sam();
-
-
-
