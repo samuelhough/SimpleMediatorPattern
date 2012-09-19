@@ -16,6 +16,7 @@ var Mediator = (function(PubSub){
 	};
 	
 	function Mediator(){
+		if(!this instanceof Mediator){ return new Mediator(); }
 		this.__events = {};
 		this.__sharedVals = {};
 	}
