@@ -2,9 +2,9 @@ var Mediator = (function(PubSub){
 	if(!PubSub || typeof PubSub !== 'function'){ 
 		throw "Simple PubSub.js required";
 	}
-	function Noop(){}
 	
-	 
+	
+	function Noop(){}
 	var getSet = {
 		set: function(key, value){
 			this.__sharedVals[key] = value;
@@ -17,8 +17,9 @@ var Mediator = (function(PubSub){
 	
 	function Mediator(){
 		if(!this instanceof Mediator){ return new Mediator(); }
-		this.__events = {};
+		this.__shared_events = {};
 		this.__sharedVals = {};
+		this.__events = {};
 	}
 	Mediator.prototype = PubSub.prototype;
 	
@@ -28,7 +29,7 @@ var Mediator = (function(PubSub){
 		child.prototype.set = getSet.set;
 		child.prototype.get = getSet.get;
 		child.prototype.__sharedVals = this.__sharedVals;
-		child.prototype.__events = this.__events;
+		child.prototype.__events = this.__shared_events;
 	}
 	
 	return Mediator;
